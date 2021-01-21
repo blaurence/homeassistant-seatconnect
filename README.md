@@ -1,16 +1,18 @@
-![Version](https://img.shields.io/github/v/release/lendy007/homeassistant-skodaconnect?include_prereleases)
-![PyPi](https://img.shields.io/pypi/v/skodaconnect?label=latest%20pypi)
-![Downloads](https://img.shields.io/github/downloads/lendy007/homeassistant-skodaconnect/total)
+![Version](https://img.shields.io/github/v/release/lendy007/homeassistant-Seatconnect?include_prereleases)
+![PyPi](https://img.shields.io/pypi/v/Seatconnect?label=latest%20pypi)
+![Downloads](https://img.shields.io/github/downloads/lendy007/homeassistant-Seatconnect/total)
 
-# Skoda Connect - An home assistant plugin to add integration with your car
+# Seat Connect - An home assistant plugin to add integration with your car
 
 # v1.0.27
 
-## This is fork of [robinostlund/homeassistant-volkswagencarnet](https://github.com/robinostlund/homeassistant-volkswagencarnet) where I am trying to modify the code to support Skoda Connect.
+## This is fork of [robinostlund/homeassistant-volkswagencarnet](https://github.com/robinostlund/homeassistant-volkswagencarnet) where I am trying to modify the code to support Seat Connect.
 
-## Big thanks to @Farfar who is making great contribution to this project!
-
-### What is working
+### What is NOT working / under development
+- for auxiliary heating/ventilation - after enabling you need to wait about 2 minutes to get true status if it is really enabled or not
+- trigger status refresh from car - for status changes where car doesn't report it automatically to server (for example car was unlocked on the garden and you just lock it) it still shows old status until car will upload new status or status is refreshed from Seat Connect App
+- when vehicleMoving=yes device_tracker GPS stays on old values until parked
+- Hass.io compatibility issues, should be fixed with 1.0.26 release (?)
 - odometer
 - fuel level, range, adblue level
 - lock status, window status
@@ -22,23 +24,17 @@
 - start/stop electric climatisation and window_heater thanks to @Farfar
 - lock/unlock car thanks to @tanelvakker
 
-### What is NOT working / under development
-- for auxiliary heating/ventilation - after enabling you need to wait about 2 minutes to get true status if it is really enabled or not
-- trigger status refresh from car - for status changes where car doesn't report it automatically to server (for example car was unlocked on the garden and you just lock it) it still shows old status until car will upload new status or status is refreshed from Skoda Connect App
-- when vehicleMoving=yes device_tracker GPS stays on old values until parked
-- Hass.io compatibility issues, should be fixed with 1.0.26 release (?)
-
 ### Install
-Clone or copy the repository and copy the folder 'homeassistant-skodaconnect/custom_component/skodaconnect' into '<config dir>/custom_components'
+Clone or copy the repository and copy the folder 'homeassistant-seatconnect/custom_component/Seatconnect' into '<config dir>/custom_components'
     
 ## Configure
 
-Add a skodaconnect configuration block to your `<config dir>/configuration.yaml`:
+Add a Seatconnect configuration block to your `<config dir>/configuration.yaml`:
 ```yaml
-skodaconnect:
-    username: <username for skoda connect>
-    password: <password for skoda connect>
-    spin: <S-PIN for skoda connect>
+Seatconnect:
+    username: <username for Seat connect>
+    password: <password for Seat connect>
+    spin: <S-PIN for Seat connect>
     combustion_engine_heating_duration: <allowed values 10,20,30,40,50,60 (minutes)>
     combustion_engine_climatisation_duration: <allowed values 10,20,30,40,50,60 (minutes)>
     scandinavian_miles: false
@@ -123,9 +119,9 @@ Save these automations in your automations file `<config dir>/automations.yaml`
 
 ### Get notification when your car is on a new place and show a map with start position and end position
 ```yaml
-- id: notify_skoda_position_change
+- id: notify_Seat_position_change
   description: Notify when position has been changed
-  alias: Skoda position changed notification
+  alias: Seat position changed notification
   trigger:
     - platform: state
       entity_id: device_tracker.kodiaq
@@ -134,7 +130,7 @@ Save these automations in your automations file `<config dir>/automations.yaml`
       data_template:
         title: "Kodiaq Position Changed"
         message: |
-          🚗 Skoda Car is now on a new place.
+          🚗 Seat Car is now on a new place.
         data:
           url: /lovelace/car
           apns_headers:
@@ -152,8 +148,8 @@ Save these automations in your automations file `<config dir>/automations.yaml`
 
 ### Announce when your car is unlocked but no one is home
 ```yaml
-- id: 'notify_skoda_car_is_unlocked'
-  alias: Skoda is at home and unlocked
+- id: 'notify_Seat_car_is_unlocked'
+  alias: Seat is at home and unlocked
   trigger:
     - entity_id: binary_sensor.vw_carid_external_power
       platform: state
@@ -192,12 +188,12 @@ Save these automations in your automations file `<config dir>/automations.yaml`
 logger:
     default: info
     logs:        
-        custom_components.skodaconnect: debug
-        custom_components.skodaconnect.climate: debug
-        custom_components.skodaconnect.lock: debug
-        custom_components.skodaconnect.device_tracker: debug
-        custom_components.skodaconnect.switch: debug
-        custom_components.skodaconnect.binary_sensor: debug
-        custom_components.skodaconnect.sensor: debug
+        custom_components.Seatconnect: debug
+        custom_components.Seatconnect.climate: debug
+        custom_components.Seatconnect.lock: debug
+        custom_components.Seatconnect.device_tracker: debug
+        custom_components.Seatconnect.switch: debug
+        custom_components.Seatconnect.binary_sensor: debug
+        custom_components.Seatconnect.sensor: debug
  ```
 
