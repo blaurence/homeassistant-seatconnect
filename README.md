@@ -4,9 +4,9 @@
 
 # Seat Connect - An home assistant plugin to add integration with your car
 
-# v1.0.27
+# v1.0.0
 
-## This is fork of [robinostlund/homeassistant-volkswagencarnet](https://github.com/robinostlund/homeassistant-volkswagencarnet) where I am trying to modify the code to support Seat Connect.
+## This is fork of [robinostlund/homeassistant-volkswagencarnet] and [lendy007/homeassistant-skodaconnect] (https://github.com/robinostlund/homeassistant-volkswagencarnet) where I am trying to modify the code to support Seat Connect.
 
 ### What is NOT working / under development
 - for auxiliary heating/ventilation - after enabling you need to wait about 2 minutes to get true status if it is really enabled or not
